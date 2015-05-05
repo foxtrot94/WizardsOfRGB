@@ -1,0 +1,179 @@
+fileFormatVersion: 2
+guid: 31067e4d42f884c37acef77d989d483e
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: SpriteSheet_GreenWizard_0
+    21300002: SpriteSheet_GreenWizard_1
+    21300004: SpriteSheet_GreenWizard_2
+    21300006: SpriteSheet_GreenWizard_3
+    21300008: SpriteSheet_GreenWizard_4
+    21300010: SpriteSheet_GreenWizard_5
+    21300012: SpriteSheet_GreenWizard_6
+    21300014: SpriteSheet_GreenWizard_7
+    21300016: SpriteSheet_GreenWizard_8
+    21300018: SpriteSheet_GreenWizard_9
+    21300020: SpriteSheet_GreenWizard_10
+    21300022: SpriteSheet_GreenWizard_11
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 1024
+  textureSettings:
+    filterMode: -1
+    aniso: 1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 200
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: SpriteSheet_GreenWizard_0
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 496
+        width: 192
+        height: 235
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpriteSheet_GreenWizard_1
+      rect:
+        serializedVersion: 2
+        x: 217
+        y: 496
+        width: 186
+        height: 225
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpriteSheet_GreenWizard_2
+      rect:
+        serializedVersion: 2
+        x: 414
+        y: 498
+        width: 174
+        height: 237
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpriteSheet_GreenWizard_3
+      rect:
+        serializedVersion: 2
+        x: 606
+        y: 498
+        width: 194
+        height: 230
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpriteSheet_GreenWizard_4
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 263
+        width: 186
+        height: 227
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpriteSheet_GreenWizard_5
+      rect:
+        serializedVersion: 2
+        x: 217
+        y: 263
+        width: 185
+        height: 227
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpriteSheet_GreenWizard_6
+      rect:
+        serializedVersion: 2
+        x: 414
+        y: 263
+        width: 185
+        height: 227
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpriteSheet_GreenWizard_7
+      rect:
+        serializedVersion: 2
+        x: 606
+        y: 263
+        width: 185
+        height: 227
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpriteSheet_GreenWizard_8
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 25
+        width: 186
+        height: 227
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpriteSheet_GreenWizard_9
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 22
+        width: 209
+        height: 236
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpriteSheet_GreenWizard_10
+      rect:
+        serializedVersion: 2
+        x: 414
+        y: 25
+        width: 185
+        height: 227
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: SpriteSheet_GreenWizard_11
+      rect:
+        serializedVersion: 2
+        x: 601
+        y: 14
+        width: 206
+        height: 240
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
