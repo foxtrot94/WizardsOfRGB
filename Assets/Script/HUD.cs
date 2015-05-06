@@ -18,7 +18,8 @@ public class HUD : MonoBehaviour
 
     public void OnEnable()
     {
-        //Time.timeScale = 1;
+        //Reset timescale if needed
+        Time.timeScale = 1;
     }
 
     public void Update()
@@ -41,7 +42,6 @@ public class HUD : MonoBehaviour
             Debug.Log("Want to quit?");
             Time.timeScale = 0;
             Application.LoadLevel("MenuScene");
-            //Application.Quit();
 		}
 		
     }
@@ -133,7 +133,7 @@ public class HUD : MonoBehaviour
         if (gameManager.gameOver)
         {
             //Game Over Screen
-            //TODO: Migrate to Unity 5
+            //TODO: Migrate to Unity 5 AND Make nicer screens with more options.
             Rect gameOverRect = new Rect(Screen.width / 2 - 200, Screen.height / 2 - 100, 400, 200);
             Rect okRect = new Rect(Screen.width / 2 - 100, Screen.height / 2 + 15, 200, 70);
 
@@ -144,8 +144,6 @@ public class HUD : MonoBehaviour
             GUI.color = Color.white;
             if (GUI.Button(okRect, "End"))
             {
-                //TODO: Move back to Menu selection screen and reset flow.
-                //Application.Quit();
                 Application.LoadLevel("MenuScene"); //Go back to the Main Menu
             }
         }
