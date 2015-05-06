@@ -16,25 +16,32 @@ public class HUD : MonoBehaviour
 	
 	private float runSpeed=Time.timeScale;
 
+    public void OnEnable()
+    {
+        //Time.timeScale = 1;
+    }
+
     public void Update()
     {
         GameManager gameManager = FindObjectOfType<GameManager>();
         score = (int)gameManager.score;
-		
+
 		//Pause Function - Replace or add keys in conditional IF
         if (Input.GetKeyDown(KeyCode.Backspace) || Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Menu))
         {
-            //Application.Quit();
 			if(Time.timeScale<=runSpeed){
 				Time.timeScale=1;
-				}
+			}
 			else{
 				Time.timeScale=0;
 			}
         }
 		
-		if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Home)){
-			Application.Quit();
+		else if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Home) || Input.GetKeyDown(KeyCode.O)){
+            Debug.Log("Want to quit?");
+            Time.timeScale = 0;
+            Application.LoadLevel("MenuScene");
+            //Application.Quit();
 		}
 		
     }
@@ -53,12 +60,14 @@ public class HUD : MonoBehaviour
         string scoreText = string.Format("Score: {0}", score);
 
         // Display the score
+        //TODO: Replace with Unity 5 GUI
         GUI.color = Color.black;
         GUI.Box(Tools.RectOffset(scoreRect, 2, 2), scoreText, scoreStyle);
         GUI.color = Color.white;
         GUI.Box(scoreRect, scoreText, scoreStyle);
 
         // Display each wizard status
+        //TODO: Replace with Unity 5 GUI
         Wizard[] wizards = FindObjectsOfType<Wizard>();
         for (int i = 0; i < wizards.Length; i++)
         {
@@ -66,10 +75,25 @@ public class HUD : MonoBehaviour
             Rect fillRect = Tools.RectShrink(healthRect, 8, 8);
 			string label;
 			
-			Rect moveUp = MakeRect(0.5f + i * 0.16f, 0.8f, 0.15f, 0.10f);
+            //Move up and move down 
+            //TODO: Change these buttons to something touch based. This looks interesting here
+            /*
+             * This is a pretty interersting example of using touch buttons. YOu might want to put it on a faster loop
+            //Rect rightIconRect = new new Rect(200,Screen.height - 200,200,200);
+            //Rect leftIconRect = new Rect (0,Screen.height - 200,200,200);
+            //foreach(Touch t in Input.touches)
+            //{
+            //    Vector2 vec = t.position;
+            //    vec.y = Screen.height - vec.y; // You need to invert since GUI and screen have differnet coordinate system
+            //    if(rightIconRect.Contains(vec))// Do something
+            //    if(leftIconRect.Contains(vec)) // Do something
+            //}
+             * 
+             */
+            Rect moveUp = MakeRect(0.5f + i * 0.16f, 0.8f, 0.15f, 0.10f);
 			Rect moveDown = MakeRect(0.5f + i * 0.16f, 0.95f, 0.15f, 0.10f);
             
-
+            //NOTE: Should we place this on top of each wizard and then disappear as they die out?
             if (wizards[i].life > 0)
             {
                 fillRect.width = wizards[i].life * fillRect.width / lifeMax;
@@ -84,6 +108,7 @@ public class HUD : MonoBehaviour
                 //label = "DEAD";
             }
 
+            //
             GUI.Box(healthRect, ""); // Border of the bar
             GUI.color = GameColor.GetDisplayColor(wizards[i].color);
             GUI.DrawTexture(fillRect, healthBar); // Inside of the bar
@@ -94,6 +119,7 @@ public class HUD : MonoBehaviour
 			
 			//For Touch Interfacing
 			//THERE IS A BUG WITH MULTI-TOUCH!!!
+            //TODO: Need to implement a correct touch control
 			if(GUI.Button(moveUp, "UP") /*|| moveUp.Contains(t.position)*/){
 				wizards[i].Move(-1);
 			}
@@ -106,6 +132,8 @@ public class HUD : MonoBehaviour
         GameManager gameManager = FindObjectOfType<GameManager>();
         if (gameManager.gameOver)
         {
+            //Game Over Screen
+            //TODO: Migrate to Unity 5
             Rect gameOverRect = new Rect(Screen.width / 2 - 200, Screen.height / 2 - 100, 400, 200);
             Rect okRect = new Rect(Screen.width / 2 - 100, Screen.height / 2 + 15, 200, 70);
 
@@ -116,7 +144,9 @@ public class HUD : MonoBehaviour
             GUI.color = Color.white;
             if (GUI.Button(okRect, "End"))
             {
-                Application.Quit();
+                //TODO: Move back to Menu selection screen and reset flow.
+                //Application.Quit();
+                Application.LoadLevel("MenuScene"); //Go back to the Main Menu
             }
         }
     }
