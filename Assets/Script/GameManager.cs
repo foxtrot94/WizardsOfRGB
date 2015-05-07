@@ -49,6 +49,7 @@ public class GameManager : MonoBehaviour
                 MusicManager musicManager = FindObjectOfType<MusicManager>();
                 musicManager.playing = false;
 
+                //Freeze Time Here.
                 Time.timeScale = 0;
                 gameOver = true;
             }
