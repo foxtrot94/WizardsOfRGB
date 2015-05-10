@@ -46,17 +46,10 @@ public class HUD : MonoBehaviour
 		
     }
 
-    private Rect MakeRect(float centerX, float centerY, float width, float height)
-    {
-        int w = (int)(Screen.width * width);
-        int h = (int)(Screen.height * height);
-        return new Rect((int)(centerX * Screen.width - w / 2), (int)(centerY * Screen.height - h / 2), w, h);
-    }
-
     public void OnGUI()
     {
 
-        Rect scoreRect = MakeRect(0.2f, 0.9f, 0.2f, 0.05f);
+        Rect scoreRect = Tools.MakeRect(0.2f, 0.9f, 0.2f, 0.05f);
         string scoreText = string.Format("Score: {0}", score);
 
         // Display the score
@@ -71,7 +64,7 @@ public class HUD : MonoBehaviour
         Wizard[] wizards = FindObjectsOfType<Wizard>();
         for (int i = 0; i < wizards.Length; i++)
         {
-            Rect healthRect = MakeRect(0.5f + i * 0.16f, 0.875f, 0.15f, 0.05f);
+            Rect healthRect = Tools.MakeRect(0.5f + i * 0.16f, 0.875f, 0.15f, 0.05f);
             Rect fillRect = Tools.RectShrink(healthRect, 8, 8);
 			string label;
 			
@@ -90,8 +83,8 @@ public class HUD : MonoBehaviour
             //}
              * 
              */
-            Rect moveUp = MakeRect(0.5f + i * 0.16f, 0.8f, 0.15f, 0.10f);
-			Rect moveDown = MakeRect(0.5f + i * 0.16f, 0.95f, 0.15f, 0.10f);
+            Rect moveUp = Tools.MakeRect(0.5f + i * 0.16f, 0.8f, 0.15f, 0.10f);
+			Rect moveDown = Tools.MakeRect(0.5f + i * 0.16f, 0.95f, 0.15f, 0.10f);
             
             //NOTE: Should we place this on top of each wizard and then disappear as they die out?
             if (wizards[i].life > 0)
