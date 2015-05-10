@@ -34,4 +34,11 @@ public static class Tools
             return GameToWorldPosition(targetRow, Mathf.Lerp(-1, 0, (progression - 0.75f) / 0.25f));
         }
     }
+
+    public static Rect MakeRect(float centerX, float centerY, float width, float height)
+    {
+        int w = (int)(Screen.width * width);
+        int h = (int)(Screen.height * height);
+        return new Rect((int)(centerX * Screen.width - w / 2), (int)(centerY * Screen.height - h / 2), w, h);
+    }
 }

@@ -5,6 +5,14 @@ using UnityEngine;
 public class Halo : MonoBehaviour
 {
     public int row;
+    public int wizardsInRow;
+    private Wizard[] wizards;
+    public Color haloColor;
+
+    void OnEnable()
+    {
+        wizards = FindObjectsOfType<Wizard>();
+    }
 
     void Update()
     {
@@ -12,13 +20,21 @@ public class Halo : MonoBehaviour
         transform.position = Tools.GameToWorldPosition(row, 0);
 
         // Get colors of the sprite based on other wizards in the same lane
-        Wizard[] wizards = FindObjectsOfType<Wizard>();
         int color = 0;
-        foreach (Wizard w in wizards.Where(w => w.life > 0 && w.row == this.row))
+        wizardsInRow = 0;
+
+        for (int i = 0; i < wizards.Length; ++i)
         {
-            color = GameColor.Combine(color, w.color);
+            if (wizards[i].row == this.row && wizards[i].life > 0)
+            {
+                color = GameColor.Combine(color, wizards[i].color);
+                ++wizardsInRow;
+            }
         }
+
         GetComponent<Renderer>().enabled = color > 0;
-        GetComponent<SpriteRenderer>().color = GameColor.GetDisplayColor(color);
+        haloColor = GameColor.GetDisplayColor(color);
+        haloColor.a =(float) (0.5f * wizardsInRow);
+        GetComponent<SpriteRenderer>().color = haloColor;
     }
 }
