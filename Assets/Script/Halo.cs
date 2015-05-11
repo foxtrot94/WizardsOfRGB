@@ -6,8 +6,9 @@ public class Halo : MonoBehaviour
 {
     public int row;
     public int wizardsInRow;
-    private Wizard[] wizards;
     public Color haloColor;
+
+    private Wizard[] wizards;
 
     void OnEnable()
     {

@@ -7,6 +7,7 @@ public class MusicManager : MonoBehaviour
     private AudioSource source;
     private int index;
     private bool focus = true;
+    private bool musicPaused = false;
 
     public bool playing = true;
     public List<AudioClip> clips;
@@ -25,7 +26,7 @@ public class MusicManager : MonoBehaviour
             {
                 source.Stop();
             }
-            else if (playing && !source.isPlaying && clips.Count > 0)
+            else if (playing && !source.isPlaying && clips.Count > 0 && !musicPaused)
             {
                 index = (index + 1) % clips.Count;
                 source.clip = clips[index];
@@ -37,5 +38,20 @@ public class MusicManager : MonoBehaviour
     void OnApplicationFocus(bool hasFocus)
     {
         focus = hasFocus;
+    }
+
+    public void pauseOrResumeMusic()
+    {
+        if (musicPaused)
+        {
+            source.Play();
+            musicPaused = false;
+        }
+        else
+        {
+            source.Pause();
+            musicPaused = true;
+            Debug.Log("Paused Music");
+        }
     }
 }
