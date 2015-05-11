@@ -6,6 +6,7 @@ using System.Linq;
 public class GameManager : MonoBehaviour
 {
     public float score = 0;
+    //TODO: Add TimeSinceLevelLoad
     public bool gameOver = false;
     public GameObject haloPrefab;
     public GameObject wizardPrefab;

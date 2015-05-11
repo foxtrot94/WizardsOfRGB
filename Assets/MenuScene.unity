@@ -181,8 +181,8 @@ RectTransform:
   m_RootOrder: 3
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: -323, y: 178}
-  m_SizeDelta: {x: 116, y: 44}
+  m_AnchoredPosition: {x: -316, y: 178}
+  m_SizeDelta: {x: 130, y: 44}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &38032048
 MonoBehaviour:
@@ -348,7 +348,7 @@ RectTransform:
   m_RootOrder: 4
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: -1, y: -80}
+  m_AnchoredPosition: {x: 1.28749998e-05, y: -72}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: .5, y: .5}
 --- !u!1 &280959580
@@ -382,8 +382,8 @@ RectTransform:
   m_RootOrder: 5
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: 2, y: -89}
-  m_SizeDelta: {x: 376, y: 77}
+  m_AnchoredPosition: {x: 3, y: -87}
+  m_SizeDelta: {x: 399, y: 83}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &280959582
 MonoBehaviour:
@@ -399,9 +399,9 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
-    m_FontStyle: 0
+    m_Font: {fileID: 12800000, guid: b856bcd97d1bc0547a57cbec448b1c6a, type: 3}
+    m_FontSize: 22
+    m_FontStyle: 2
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
@@ -410,9 +410,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Move the three wizards up and down using arrows. \nColors mix if they are
-    in the same lane to create new ones. \r\nEnemies can be destroyed by the right
-    combination of colors. So try to Survive and aim for the highest score!"
+  m_Text: "Move the three wizards up and down. Colors mix in the same lane to create
+    new ones. \rEnemies are destroyed by matching colors. Good Luck!"
 --- !u!222 &280959583
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -450,8 +449,8 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: .196078435, g: .196078435, b: .196078435, a: 1}
   m_FontData:
-    m_Font: {fileID: 12800000, guid: b856bcd97d1bc0547a57cbec448b1c6a, type: 3}
-    m_FontSize: 16
+    m_Font: {fileID: 12800000, guid: 44dd2926297143c46bc984a02ae76360, type: 3}
+    m_FontSize: 22
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
@@ -518,7 +517,7 @@ RectTransform:
   m_RootOrder: 2
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: 0, y: 5.5}
+  m_AnchoredPosition: {x: -1, y: 15}
   m_SizeDelta: {x: 100, y: 52}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &609551827
@@ -649,8 +648,8 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FontData:
-    m_Font: {fileID: 12800000, guid: b856bcd97d1bc0547a57cbec448b1c6a, type: 3}
-    m_FontSize: 16
+    m_Font: {fileID: 12800000, guid: 44dd2926297143c46bc984a02ae76360, type: 3}
+    m_FontSize: 25
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
@@ -698,8 +697,8 @@ RectTransform:
   m_RootOrder: 6
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: 1.29419996e-05, y: -43.4000015}
-  m_SizeDelta: {x: 100, y: 30}
+  m_AnchoredPosition: {x: 6.49999809, y: -35}
+  m_SizeDelta: {x: 185, y: 30}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &626742029
 MonoBehaviour:
@@ -715,13 +714,13 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: .760784388, g: .760784388, b: .760784388, a: 1}
   m_FontData:
-    m_Font: {fileID: 12800000, guid: b856bcd97d1bc0547a57cbec448b1c6a, type: 3}
-    m_FontSize: 20
+    m_Font: {fileID: 12800000, guid: 44dd2926297143c46bc984a02ae76360, type: 3}
+    m_FontSize: 24
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 1
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
@@ -766,7 +765,7 @@ RectTransform:
   m_RootOrder: 3
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: -136, y: 5.5}
+  m_AnchoredPosition: {x: -137, y: 15}
   m_SizeDelta: {x: 100, y: 52}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &642846282
@@ -923,7 +922,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 648116824}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 656630981}
+        m_MethodName: Quit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &648116824
@@ -1190,8 +1201,8 @@ RectTransform:
   m_RootOrder: 4
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: 9, y: 56}
-  m_SizeDelta: {x: 542, y: 30}
+  m_AnchoredPosition: {x: 9, y: 61}
+  m_SizeDelta: {x: 542, y: 40}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &1077877297
 MonoBehaviour:
@@ -1207,8 +1218,8 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FontData:
-    m_Font: {fileID: 12800000, guid: b856bcd97d1bc0547a57cbec448b1c6a, type: 3}
-    m_FontSize: 25
+    m_Font: {fileID: 12800000, guid: 44dd2926297143c46bc984a02ae76360, type: 3}
+    m_FontSize: 29
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
@@ -1216,7 +1227,7 @@ MonoBehaviour:
     m_Alignment: 1
     m_RichText: 1
     m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: Choose Your Difficulty
 --- !u!222 &1077877298
@@ -1273,8 +1284,8 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FontData:
-    m_Font: {fileID: 12800000, guid: b856bcd97d1bc0547a57cbec448b1c6a, type: 3}
-    m_FontSize: 16
+    m_Font: {fileID: 12800000, guid: 44dd2926297143c46bc984a02ae76360, type: 3}
+    m_FontSize: 25
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
@@ -1324,7 +1335,7 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: 140, y: 5.5}
+  m_AnchoredPosition: {x: 139, y: 15}
   m_SizeDelta: {x: 100, y: 52}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &1656294528
@@ -1515,8 +1526,8 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: .415686309, b: 0, a: 1}
   m_FontData:
-    m_Font: {fileID: 12800000, guid: b856bcd97d1bc0547a57cbec448b1c6a, type: 3}
-    m_FontSize: 14
+    m_Font: {fileID: 12800000, guid: 44dd2926297143c46bc984a02ae76360, type: 3}
+    m_FontSize: 20
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
@@ -1526,7 +1537,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Leave!
+  m_Text: Quit!
 --- !u!222 &1817990614
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1581,8 +1592,8 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FontData:
-    m_Font: {fileID: 12800000, guid: b856bcd97d1bc0547a57cbec448b1c6a, type: 3}
-    m_FontSize: 20
+    m_Font: {fileID: 12800000, guid: 44dd2926297143c46bc984a02ae76360, type: 3}
+    m_FontSize: 25
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
@@ -1592,7 +1603,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Scoreboard
+  m_Text: Scores
 --- !u!222 &2072674133
 CanvasRenderer:
   m_ObjectHideFlags: 0
