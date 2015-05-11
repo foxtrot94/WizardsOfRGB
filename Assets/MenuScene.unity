@@ -399,9 +399,9 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FontData:
-    m_Font: {fileID: 12800000, guid: b856bcd97d1bc0547a57cbec448b1c6a, type: 3}
-    m_FontSize: 22
-    m_FontStyle: 2
+    m_Font: {fileID: 12800000, guid: e8c342f4398015340834cdc13e8866d5, type: 3}
+    m_FontSize: 14
+    m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
@@ -697,8 +697,8 @@ RectTransform:
   m_RootOrder: 6
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: 6.49999809, y: -35}
-  m_SizeDelta: {x: 185, y: 30}
+  m_AnchoredPosition: {x: -6.31810008e-06, y: -41}
+  m_SizeDelta: {x: 222, y: 30}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &626742029
 MonoBehaviour:
@@ -714,8 +714,8 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: .760784388, g: .760784388, b: .760784388, a: 1}
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 44dd2926297143c46bc984a02ae76360, type: 3}
-    m_FontSize: 24
+    m_Font: {fileID: 12800000, guid: e8c342f4398015340834cdc13e8866d5, type: 3}
+    m_FontSize: 18
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
@@ -723,7 +723,7 @@ MonoBehaviour:
     m_Alignment: 1
     m_RichText: 1
     m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: Instructions
 --- !u!222 &626742030
@@ -1226,7 +1226,7 @@ MonoBehaviour:
     m_MaxSize: 40
     m_Alignment: 1
     m_RichText: 1
-    m_HorizontalOverflow: 0
+    m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: Choose Your Difficulty
@@ -1526,15 +1526,15 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: .415686309, b: 0, a: 1}
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 44dd2926297143c46bc984a02ae76360, type: 3}
-    m_FontSize: 20
+    m_Font: {fileID: 12800000, guid: e8c342f4398015340834cdc13e8866d5, type: 3}
+    m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
     m_Alignment: 1
     m_RichText: 1
-    m_HorizontalOverflow: 0
+    m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Quit!
@@ -1592,8 +1592,8 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 44dd2926297143c46bc984a02ae76360, type: 3}
-    m_FontSize: 25
+    m_Font: {fileID: 12800000, guid: e8c342f4398015340834cdc13e8866d5, type: 3}
+    m_FontSize: 20
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10

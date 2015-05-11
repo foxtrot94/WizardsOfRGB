@@ -11,6 +11,10 @@ public class GameManager : MonoBehaviour
     public GameObject haloPrefab;
     public GameObject wizardPrefab;
 
+    public Wizard redWizard;
+    public Wizard greenWizard;
+    public Wizard blueWizard;
+
     private Wizard[] wizards;
 
     private int[] colors = new int[] { (int)GameColor.Colors.Red, (int)GameColor.Colors.Green, (int)GameColor.Colors.Blue };
