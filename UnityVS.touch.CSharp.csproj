@@ -64,6 +64,7 @@
     <Compile Include="Assets\Script\Entities\Wizard.cs" />
     <Compile Include="Assets\Script\GameColor.cs" />
     <Compile Include="Assets\Script\GameManager.cs" />
+    <Compile Include="Assets\Script\GameTouchButton.cs" />
     <Compile Include="Assets\Script\Generator.cs" />
     <Compile Include="Assets\Script\HUD.cs" />
     <Compile Include="Assets\Script\Halo.cs" />
