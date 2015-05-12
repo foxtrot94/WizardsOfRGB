@@ -1824,7 +1824,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreVal: {fileID: 1822865908}
-  gameUI: {fileID: 0}
 --- !u!4 &1697961567
 Transform:
   m_ObjectHideFlags: 0
