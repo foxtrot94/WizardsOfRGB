@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 
+
+//TODO: Delete this entire script after adding health bars.
 public class HUD : MonoBehaviour
 {
     public GUIStyle scoreStyle;

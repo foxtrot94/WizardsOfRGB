@@ -5,7 +5,15 @@ public class MenuController : MonoBehaviour {
 
     public void OnEnable()
     {
-        Debug.Log("This is Menu Controller" + this.GetType());
+
+    }
+
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Home))
+        {
+            Application.Quit();
+        }
     }
 
     public void OnClickDifficultyEasy()

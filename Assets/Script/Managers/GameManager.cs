@@ -6,7 +6,8 @@ using System.Linq;
 public class GameManager : MonoBehaviour
 {
     public float score = 0;
-    //TODO: Add TimeSinceLevelLoad
+    public float timeInGame = 0f; // TODO: Choose whether to put this here or elsewhere
+    //public bool gamePause = false; //TODO: Bring over from UIManager class.
     public bool gameOver = false;
     public GameObject haloPrefab;
     public GameObject wizardPrefab;
