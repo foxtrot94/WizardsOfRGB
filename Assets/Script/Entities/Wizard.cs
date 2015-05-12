@@ -63,11 +63,11 @@ public class Wizard : Entity
             GetComponent<Renderer>().enabled = invulnerability % 0.1f < 0.05f;
             invulnerability = Mathf.Max(0f, invulnerability - Time.deltaTime);
 
-            if (Input.GetButtonUp(upButton) && switchTimer == 0)
+            if (Input.GetButtonDown(upButton) && switchTimer == 0)
             {
                 this.Move(-1);
             }
-            else if (Input.GetButtonUp(downButton) && switchTimer == 0)
+            else if (Input.GetButtonDown(downButton) && switchTimer == 0)
             {
                 this.Move(1);
             }

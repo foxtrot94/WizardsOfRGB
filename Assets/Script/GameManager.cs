@@ -6,9 +6,14 @@ using System.Linq;
 public class GameManager : MonoBehaviour
 {
     public float score = 0;
+    //TODO: Add TimeSinceLevelLoad
     public bool gameOver = false;
     public GameObject haloPrefab;
     public GameObject wizardPrefab;
+
+    public Wizard redWizard;
+    public Wizard greenWizard;
+    public Wizard blueWizard;
 
     private Wizard[] wizards;
 
@@ -19,6 +24,8 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         wizards = new Wizard[3];
+
+        //Instantiate Wizards
         for (int i = 2; i >= 0; i--)
         {
             GameObject wizardObject = (GameObject) Instantiate(wizardPrefab);
@@ -31,8 +38,23 @@ public class GameManager : MonoBehaviour
             wizard.row = 1 + i;
             wizard.offsetX = -0.1f + 0.1f * i;
             wizards[i] = wizard;
+
+            //Assign the correct one
+            if (i == 2)
+            {
+                blueWizard = wizard;
+            }
+            else if (i == 1)
+            {
+                greenWizard = wizard;
+            }
+            else if (i == 0)
+            {
+                redWizard = wizard;
+            }
         }
 
+        //Instantiate Lane Halos
         for (int i = 0; i < 5; i++)
         {
             GameObject ring = (GameObject)Instantiate(haloPrefab);
@@ -53,18 +75,13 @@ public class GameManager : MonoBehaviour
                 Time.timeScale = 0;
                 gameOver = true;
             }
-            else
-            {
-                /*
-                Generator generator = GetComponent<Generator>();
-                score += 10f * Time.deltaTime * (1f + generator.elapsed / 60f);
-                */
-            }
         }
+        //TODO: If gameOver, count the time since the level was loaded!
     }
 
     public bool CheckHit(Enemy enemy)
     {
+        //TODO: Optimize by using the Halo script and GameObject.
         IEnumerable<Wizard> wizardsInLane = wizards.Where(w => w.row == enemy.row && w.life > 0);
         int color = 0;
 
