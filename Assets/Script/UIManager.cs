@@ -6,51 +6,112 @@ public class UIManager : MonoBehaviour {
 
     public Text scoreVal;
     public Canvas gameUI;
+    public GameObject pauseScreen;
 
-    private bool gamePaused=false;
+    private bool gamePaused = false;
+    private bool wantsToGoBack = false;
+    private bool wantsToQuit = false;
     
     private GameManager gameMan;
     private MusicManager musicMan;
 
+    private const string pauseScreenBannerName = "DialogBanner";
+    private const string pauseScreenTextName = "DialogText";
+    private const string goodTextName = "GoodText";
+    private const string badTextName = "BadText";
+
+    private const string gameOverBanner = "Game Over";
+    private const string pauseBanner = "Game Paused";
+    private const string backBanner = "Back to Menu?";
+    private const string quitBanner = "Exit Game?";
+    private const string pauseText = "You breathe for a while";
+    private const string backText = "Head back to the main menu?";
+    private const string quitText = "What? You want to leave now?";
+
+    //Note the poor choice of variable names...
+    private const string goodTextString = "Menu";
+    private const string badTextString = "Quit";
+
+    private Text pauseScreenBanner;
+    private Text pauseScreenText;
+    private Text goodText;
+    private Text badText;
+
     void OnEnable()
     {
+        //Find all the managers
         gameMan = FindObjectOfType<GameManager>();
         musicMan = FindObjectOfType<MusicManager>();
+        
+        //Retrieve and set all components
+        Text[] items = pauseScreen.GetComponentsInChildren<Text>();
+        for (int i = 0; i < items.Length; ++i)
+        {
+            //Note: No way around the nasty switch statement.
+            if (items[i].name.Contains(pauseScreenBannerName))
+            {
+                pauseScreenBanner = items[i];
+            }
+            else if (items[i].name.Contains(pauseScreenTextName))
+            {
+                pauseScreenText = items[i];
+            }
+            else if (items[i].name.Contains(goodTextName))
+            {
+                goodText = items[i];
+            }
+            else if (items[i].name.Contains(badTextName))
+            {
+                badText = items[i];
+            }
+        }
+
+        pauseScreen.SetActive(false);
         Time.timeScale = 1;
+
     }
 
-	// Use this for initialization
 	void Start () {
         scoreVal.text = "0";
 	}
 	
-	// Update is called once per frame
 	void Update () {
 	    //Update Score
         scoreVal.text = gameMan.score.ToString();
-	}
 
-    public void OnGUI()
-    {
         if (gameMan.gameOver)
         {
-            //Game Over Screen
+            //Stop the game and tell the player
             Time.timeScale = 0;
-            //TODO: Migrate to Unity 5 AND Make nicer screens with more options.
-            Rect gameOverRect = new Rect(Screen.width / 2 - 200, Screen.height / 2 - 100, 400, 200);
-            Rect okRect = new Rect(Screen.width / 2 - 100, Screen.height / 2 + 15, 200, 70);
-
-            GUI.color = Color.red;
-            GUI.Box(gameOverRect, "");
-            GUI.Label(Tools.RectOffset(gameOverRect, 0, -20), "GAME OVER");
-
-            GUI.color = Color.white;
-            if (GUI.Button(okRect, "End"))
-            {
-                Application.LoadLevel("MenuScene"); //Go back to the Main Menu
-            }
+            pauseScreenBanner.text = gameOverBanner;
+            pauseScreenText.text = "You had a nice run!";
+            pauseScreen.SetActive(true);
         }
-    }
+
+        
+	}
+
+    //public void OnGUI()
+    //{
+    //    if (gameMan.gameOver)
+    //    {
+    //        //Game Over Screen
+    //        Time.timeScale = 0;
+    //        //TODO: Migrate to Unity 5 AND Make nicer screens with more options.
+    //        Rect gameOverRect = new Rect(Screen.width / 2 - 200, Screen.height / 2 - 100, 400, 200);
+    //        Rect okRect = new Rect(Screen.width / 2 - 100, Screen.height / 2 + 15, 200, 70);
+
+    //        GUI.color = Color.red;
+    //        GUI.Box(gameOverRect, "");
+    //        GUI.Label(Tools.RectOffset(gameOverRect, 0, -20), "GAME OVER");
+
+    //        GUI.color = Color.white;
+    //        if (GUI.Button(okRect, "End"))
+    //        {
+    //            Application.LoadLevel("MenuScene"); //Go back to the Main Menu
+    //        }
+    //    }
+    //}
 
     public void Testy()
     {
@@ -63,21 +124,66 @@ public class UIManager : MonoBehaviour {
         {
             Time.timeScale = 1;
             gamePaused = false;
+            wantsToGoBack = false;
         }
         else
         {
             Time.timeScale = 0;
             gamePaused = true;
+            badText.text = badTextString;
+            goodText.text = goodTextString;
+            pauseScreenBanner.text = pauseBanner;
+            pauseScreenText.text = pauseText;
         }
+
+        pauseScreen.SetActive(gamePaused);
 
         //Call to toggle game music.
         musicMan.pauseOrResumeMusic();
     }
 
+    public void OnClickBack()
+    {
+        if (wantsToGoBack || gameMan.gameOver || wantsToQuit)
+        {
+            Application.LoadLevel("MenuScene");
+        }
+        else
+        {
+            if (!gamePaused)
+            {
+                OnClickPause();
+            }
+
+            pauseScreenBanner.text = backBanner;
+            pauseScreenText.text = backText;
+            goodText.text = "Yes";
+            wantsToGoBack = true;
+
+        }
+    }
+
     public void OnClickQuit()
     {
-        //TODO: add confirmation dialog.
-        Application.Quit();
+        if (wantsToQuit || gameMan.gameOver || wantsToGoBack)
+        {
+            Application.Quit();
+        }
+        else
+        {
+            if (!gamePaused)
+            {
+                OnClickPause();
+            }
+
+            pauseScreenBanner.text = quitBanner;
+            pauseScreenText.text = quitText;
+            goodText.text = goodTextString;
+            badText.text = "Leave Now";
+            wantsToGoBack = true;
+
+            wantsToQuit = true;
+        }
     }
 
     public void OnClickMainMenu()
