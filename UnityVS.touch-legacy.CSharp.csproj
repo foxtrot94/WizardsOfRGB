@@ -60,16 +60,15 @@
     <Compile Include="Assets\Script\Entities\Entity.cs" />
     <Compile Include="Assets\Script\Entities\Wizard.cs" />
     <Compile Include="Assets\Script\GameColor.cs" />
-    <Compile Include="Assets\Script\GameManager.cs" />
-    <Compile Include="Assets\Script\GameTouchButton.cs" />
     <Compile Include="Assets\Script\Generator.cs" />
     <Compile Include="Assets\Script\HUD.cs" />
     <Compile Include="Assets\Script\Halo.cs" />
-    <Compile Include="Assets\Script\MenuController.cs" />
+    <Compile Include="Assets\Script\Managers\GameManager.cs" />
+    <Compile Include="Assets\Script\Managers\MenuController.cs" />
+    <Compile Include="Assets\Script\Managers\MusicManager.cs" />
+    <Compile Include="Assets\Script\Managers\UIManager.cs" />
     <Compile Include="Assets\Script\Moon.cs" />
-    <Compile Include="Assets\Script\MusicManager.cs" />
     <Compile Include="Assets\Script\Tools.cs" />
-    <Compile Include="Assets\Script\UIManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Fonts\PressStart2P.FONTLOG.txt" />

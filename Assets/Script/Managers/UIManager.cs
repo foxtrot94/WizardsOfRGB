@@ -87,36 +87,19 @@ public class UIManager : MonoBehaviour {
             pauseScreenText.text = "You had a nice run!";
             pauseScreen.SetActive(true);
         }
+        else
+        {
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Menu))
+            {
+                OnClickPause();
+            }
 
-        
+            else if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Home) || Input.GetKeyDown(KeyCode.O))
+            {
+                OnClickQuit();
+            }
+        }
 	}
-
-    //public void OnGUI()
-    //{
-    //    if (gameMan.gameOver)
-    //    {
-    //        //Game Over Screen
-    //        Time.timeScale = 0;
-    //        //TODO: Migrate to Unity 5 AND Make nicer screens with more options.
-    //        Rect gameOverRect = new Rect(Screen.width / 2 - 200, Screen.height / 2 - 100, 400, 200);
-    //        Rect okRect = new Rect(Screen.width / 2 - 100, Screen.height / 2 + 15, 200, 70);
-
-    //        GUI.color = Color.red;
-    //        GUI.Box(gameOverRect, "");
-    //        GUI.Label(Tools.RectOffset(gameOverRect, 0, -20), "GAME OVER");
-
-    //        GUI.color = Color.white;
-    //        if (GUI.Button(okRect, "End"))
-    //        {
-    //            Application.LoadLevel("MenuScene"); //Go back to the Main Menu
-    //        }
-    //    }
-    //}
-
-    public void Testy()
-    {
-        Debug.Log("Button Clicked!");
-    }
 
     public void OnClickPause()
     {
@@ -125,6 +108,7 @@ public class UIManager : MonoBehaviour {
             Time.timeScale = 1;
             gamePaused = false;
             wantsToGoBack = false;
+            wantsToQuit = false;
         }
         else
         {
