@@ -77,13 +77,14 @@ public class UIManager : MonoBehaviour {
 	}
 	
 	void Update () {
-	    //Update Score
-        scoreVal.text = gameMan.score.ToString();
 
         if (gameMan.gameOver)
         {
             //Stop the game and tell the player
             Time.timeScale = 0;
+
+            //TODO: Incorporate Score Checking
+
             pauseScreenBanner.text = gameOverBanner;
             pauseScreenText.text = "You had a nice run!";
             pauseButton.SetActive(false);
@@ -91,6 +92,10 @@ public class UIManager : MonoBehaviour {
         }
         else
         {
+            //Update Score
+            scoreVal.text = gameMan.score.ToString();
+
+            //Listen to button input
             if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Menu))
             {
                 OnClickPause();

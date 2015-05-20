@@ -23,10 +23,12 @@ public class Wizard : Entity
     private AudioSource source;
 
     private HealthBar wizardHealthBar;
+    private Animator wizardAnimator;
 
     public void Start()
     {
         source = GetComponent<AudioSource>();
+        wizardAnimator = GetComponent<Animator>();
     }
 
     public void OnEnable()
@@ -121,7 +123,7 @@ public class Wizard : Entity
                 source.PlayOneShot(takingDamage[UnityEngine.Random.Range(0, takingDamage.Count)]);
             }
 
-            GetComponent<Animator>().Play("Damage");
+            wizardAnimator.Play("Damage");
         }
     }
 
@@ -131,8 +133,8 @@ public class Wizard : Entity
         {
             source.PlayOneShot(dealingDamage[UnityEngine.Random.Range(0, dealingDamage.Count)]);
         }
-
-        GetComponent<Animator>().Play("attack");
+        
+        wizardAnimator.Play("attack");
     }
 
     public void SetColor(int colorNumber)

@@ -7,7 +7,8 @@ public class MenuController : MonoBehaviour {
 
     public void OnEnable()
     {
-        
+        //Do not allow the device to sleep. Ever
+        Screen.sleepTimeout = SleepTimeout.NeverSleep;
     }
 
     public void Update()

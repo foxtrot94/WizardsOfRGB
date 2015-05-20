@@ -399,7 +399,7 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "Move the three wizards up and down. Colors mix in the same lane to create
-    new ones. \rEnemies are destroyed by matching colors. Good Luck!"
+    new ones. \rEnemies are destroyed by matching colors."
 --- !u!222 &280959583
 CanvasRenderer:
   m_ObjectHideFlags: 0

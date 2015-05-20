@@ -11,7 +11,7 @@ public class Generator : MonoBehaviour {
     public int lanes = 5;
     public GameObject blockPrefab;
 
-    private int[] difficultyTimeOffset = { 0, 120, 240 };
+    private readonly int[] difficultyTimeOffset = { 0, 120, 240 };
 
     private static readonly int[] spawnProbability = new int[] {
             // 1 block spawn

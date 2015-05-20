@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
+
 
 public class GameManager : MonoBehaviour
 {
@@ -17,7 +17,6 @@ public class GameManager : MonoBehaviour
     public Wizard greenWizard;
     public Wizard blueWizard;
 
-    private Wizard[] wizards;
     private Halo[] rowHalos;
 
     private int[] colors = new int[] { (int)GameColor.Colors.Red, (int)GameColor.Colors.Green, (int)GameColor.Colors.Blue };
@@ -26,7 +25,6 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
-        wizards = new Wizard[3];
         rowHalos = new Halo[5];
 
         //Instantiate Wizards
@@ -41,7 +39,6 @@ public class GameManager : MonoBehaviour
             wizard.SetColor(colors[i]);
             wizard.row = 1 + i;
             wizard.offsetX = -0.1f + 0.1f * i;
-            wizards[i] = wizard;
 
             //Assign the correct one
             if (i == 2)
@@ -71,7 +68,8 @@ public class GameManager : MonoBehaviour
     {
         if (!gameOver)
         {
-            if (wizards.All(w => w.life == 0)) //This is GameOver man.
+            //If our 3 wizards have no life left
+            if (redWizard.life == 0 && greenWizard.life == 0 && blueWizard.life == 0)
             {
                 MusicManager musicManager = FindObjectOfType<MusicManager>();
                 musicManager.playing = false;
