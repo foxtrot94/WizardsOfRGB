@@ -24,6 +24,7 @@ public class Wizard : Entity
 
     private HealthBar wizardHealthBar;
     private Animator wizardAnimator;
+    private GameManager gameMan;
 
     public void Start()
     {
@@ -33,6 +34,7 @@ public class Wizard : Entity
 
     public void OnEnable()
     {
+        gameMan = FindObjectOfType<GameManager>();
         wizardHealthBar = GetComponentInChildren<HealthBar>();
     }
 
@@ -50,7 +52,7 @@ public class Wizard : Entity
         }
     }
 
-	void Update () 
+	void Update ()
 	{
         if (respawn > 0f)
         {
@@ -72,13 +74,17 @@ public class Wizard : Entity
             GetComponent<Renderer>().enabled = invulnerability % 0.1f < 0.05f;
             invulnerability = Mathf.Max(0f, invulnerability - Time.deltaTime);
 
-            if (Input.GetButtonDown(upButton) && switchTimer == 0)
+            //Read Controls if game is not paused.
+            if (!gameMan.gamePaused)
             {
-                this.Move(-1);
-            }
-            else if (Input.GetButtonDown(downButton) && switchTimer == 0)
-            {
-                this.Move(1);
+                if (Input.GetButtonDown(upButton) && switchTimer == 0)
+                {
+                    this.Move(-1);
+                }
+                else if (Input.GetButtonDown(downButton) && switchTimer == 0)
+                {
+                    this.Move(1);
+                }
             }
 
             if (switchTimer > 0)
