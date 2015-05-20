@@ -6,17 +6,19 @@ using System.Linq;
 public class GameManager : MonoBehaviour
 {
     public float score = 0;
-    public float timeInGame = 0f; // TODO: Choose whether to put this here or elsewhere
-    //public bool gamePause = false; //TODO: Bring over from UIManager class.
+    public float timeInGame = 0f; // TODO: Read this from generator? or maintain it here?
+    public bool gamePaused = false;
     public bool gameOver = false;
     public GameObject haloPrefab;
     public GameObject wizardPrefab;
+    public GameObject healthBarPrefab;
 
     public Wizard redWizard;
     public Wizard greenWizard;
     public Wizard blueWizard;
 
     private Wizard[] wizards;
+    private Halo[] rowHalos;
 
     private int[] colors = new int[] { (int)GameColor.Colors.Red, (int)GameColor.Colors.Green, (int)GameColor.Colors.Blue };
     private string[] suffix = new string[] { "RedWizard", "GreenWizard", "BlueWizard" };
@@ -25,6 +27,7 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         wizards = new Wizard[3];
+        rowHalos = new Halo[5];
 
         //Instantiate Wizards
         for (int i = 2; i >= 0; i--)
@@ -35,7 +38,7 @@ public class GameManager : MonoBehaviour
             Wizard wizard = wizardObject.GetComponent<Wizard>();
             wizard.upButton = suffix[i] + "Up";
             wizard.downButton = suffix[i] + "Down";
-            wizard.color = colors[i];
+            wizard.SetColor(colors[i]);
             wizard.row = 1 + i;
             wizard.offsetX = -0.1f + 0.1f * i;
             wizards[i] = wizard;
@@ -59,7 +62,8 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < 5; i++)
         {
             GameObject ring = (GameObject)Instantiate(haloPrefab);
-            ring.GetComponent<Halo>().row = i;
+            rowHalos[i] = ring.GetComponent<Halo>();
+            rowHalos[i].row = i;
         }
     }
 
@@ -67,7 +71,7 @@ public class GameManager : MonoBehaviour
     {
         if (!gameOver)
         {
-            if (wizards.All(w => w.life == 0))
+            if (wizards.All(w => w.life == 0)) //This is GameOver man.
             {
                 MusicManager musicManager = FindObjectOfType<MusicManager>();
                 musicManager.playing = false;
@@ -82,39 +86,34 @@ public class GameManager : MonoBehaviour
 
     public bool CheckHit(Enemy enemy)
     {
-        //TODO: Optimize by using the Halo script and GameObject.
-        IEnumerable<Wizard> wizardsInLane = wizards.Where(w => w.row == enemy.row && w.life > 0);
-        int color = 0;
-
-        foreach (Wizard w in wizardsInLane)
-        {
-            color = GameColor.Combine(color, w.color);
-        }
+        int currentRow = enemy.row;
+        int color = rowHalos[currentRow].combinedColorIndex;
+        Wizard[] wizardsInLane = rowHalos[currentRow].GetWizardsInLane();
 
         if (color > 0)
         {
             // Collision occured
 
-            if (color == enemy.color)
+            if (color == enemy.color) //Right Color Combo
             {
                 score += 100 * Mathf.Pow(4, GameColor.GetNumComponents(color) - 1);
 
-                foreach (Wizard w in wizardsInLane)
+                for (int i = 0; i < wizardsInLane.Length; ++i)
                 {
-                    w.Spell();
+                    wizardsInLane[i].Spell();
                 }
             }
-            else
+            else //Wrong Color Combo
             {
-                foreach (Wizard w in wizardsInLane)
+                for (int i = 0; i < wizardsInLane.Length; ++i)
                 {
-                    w.Hit();
+                    wizardsInLane[i].Hit();
                 }
             }
-
+            //Tell the enemy it did hit a Wizard
             return true;
         }
-
+        //Enemy did not hit wizard
         return false;
     }
 }

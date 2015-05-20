@@ -724,6 +724,10 @@ Prefab:
       propertyPath: m_Color.b
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 130018, guid: d5a6c464d0b12b740a1668282e96a03a, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d5a6c464d0b12b740a1668282e96a03a, type: 2}
   m_RootGameObject: {fileID: 1131250728}
@@ -2530,6 +2534,26 @@ Prefab:
     - target: {fileID: 11430022, guid: d5a6c464d0b12b740a1668282e96a03a, type: 2}
       propertyPath: m_Color.b
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 130018, guid: d5a6c464d0b12b740a1668282e96a03a, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 130020, guid: d5a6c464d0b12b740a1668282e96a03a, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11430022, guid: d5a6c464d0b12b740a1668282e96a03a, type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11430020, guid: d5a6c464d0b12b740a1668282e96a03a, type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11430018, guid: d5a6c464d0b12b740a1668282e96a03a, type: 2}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d5a6c464d0b12b740a1668282e96a03a, type: 2}
@@ -4728,7 +4752,8 @@ MonoBehaviour:
   timeInGame: 0
   gameOver: 0
   haloPrefab: {fileID: 100000, guid: 70bc549f16a2b32429994b76f2d7bc01, type: 2}
-  wizardPrefab: {fileID: 100000, guid: d9536503dc93f914f8ac4e4c1193d01c, type: 2}
+  wizardPrefab: {fileID: 121194, guid: 527039a101a03e14d97d6cda7b2e1e6a, type: 2}
+  healthBarPrefab: {fileID: 187764, guid: 9d16536b89b41cc4c86984239d8a58f5, type: 2}
   redWizard: {fileID: 0}
   greenWizard: {fileID: 0}
   blueWizard: {fileID: 0}
@@ -5091,6 +5116,7 @@ MonoBehaviour:
   scoreVal: {fileID: 1822865908}
   gameUI: {fileID: 1477215455}
   pauseScreen: {fileID: 1838288733}
+  pauseButton: {fileID: 1131250728}
 --- !u!4 &1697961567
 Transform:
   m_ObjectHideFlags: 0

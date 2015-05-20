@@ -7,7 +7,7 @@ public class Wizard : Entity
     public string upButton = "RedWizardUp"; // Can be: RedWizardUp etc.
     public string downButton = "RedWizardDown"; // Can be: RedWizardDown etc.
 
-    public int life = 5;
+    public int life = 3;
     public float respawn = 0f;
     public float invulnerability = 0f;
     public float offsetX = 0; // Only to avoid overlapping wizards
@@ -22,9 +22,16 @@ public class Wizard : Entity
     public List<AudioClip> respawnSound;
     private AudioSource source;
 
+    private HealthBar wizardHealthBar;
+
     public void Start()
     {
         source = GetComponent<AudioSource>();
+    }
+
+    public void OnEnable()
+    {
+        wizardHealthBar = GetComponentInChildren<HealthBar>();
     }
 
     public void Move(int delta)
@@ -50,7 +57,7 @@ public class Wizard : Entity
             if (respawn <= 0)
             {
                 life = 3;
-
+                wizardHealthBar.Heal();
                 if (respawnSound.Count > 0)
                 {
                     source.PlayOneShot(respawnSound[UnityEngine.Random.Range(0, respawnSound.Count)]);
@@ -100,9 +107,14 @@ public class Wizard : Entity
         if (invulnerability == 0f)
         {
             life--;
+            wizardHealthBar.HitTaken();
             invulnerability = 1.5f;
 
-            if (life == 0) respawn = 30f;
+            if (life == 0)
+            {
+                //Wizard is dead, respawn after 30s
+                respawn = 30f;
+            }
 
             if (takingDamage.Count > 0)
             {
@@ -121,6 +133,12 @@ public class Wizard : Entity
         }
 
         GetComponent<Animator>().Play("attack");
+    }
+
+    public void SetColor(int colorNumber)
+    {
+        this.color = colorNumber;
+        wizardHealthBar.gameObject.GetComponent<SpriteRenderer>().color = GameColor.GetDisplayColor(this.color);
     }
 	
 }

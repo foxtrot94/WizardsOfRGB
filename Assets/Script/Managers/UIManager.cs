@@ -7,8 +7,8 @@ public class UIManager : MonoBehaviour {
     public Text scoreVal;
     public Canvas gameUI;
     public GameObject pauseScreen;
+    public GameObject pauseButton;
 
-    private bool gamePaused = false;
     private bool wantsToGoBack = false;
     private bool wantsToQuit = false;
     
@@ -67,6 +67,7 @@ public class UIManager : MonoBehaviour {
         }
 
         pauseScreen.SetActive(false);
+        pauseButton.SetActive(true);
         Time.timeScale = 1;
 
     }
@@ -85,6 +86,7 @@ public class UIManager : MonoBehaviour {
             Time.timeScale = 0;
             pauseScreenBanner.text = gameOverBanner;
             pauseScreenText.text = "You had a nice run!";
+            pauseButton.SetActive(false);
             pauseScreen.SetActive(true);
         }
         else
@@ -103,24 +105,24 @@ public class UIManager : MonoBehaviour {
 
     public void OnClickPause()
     {
-        if (gamePaused)
+        if (gameMan.gamePaused)
         {
             Time.timeScale = 1;
-            gamePaused = false;
+            gameMan.gamePaused = false;
             wantsToGoBack = false;
             wantsToQuit = false;
         }
         else
         {
             Time.timeScale = 0;
-            gamePaused = true;
+            gameMan.gamePaused = true;
             badText.text = badTextString;
             goodText.text = goodTextString;
             pauseScreenBanner.text = pauseBanner;
             pauseScreenText.text = pauseText;
         }
 
-        pauseScreen.SetActive(gamePaused);
+        pauseScreen.SetActive(gameMan.gamePaused);
 
         //Call to toggle game music.
         musicMan.pauseOrResumeMusic();
@@ -134,7 +136,7 @@ public class UIManager : MonoBehaviour {
         }
         else
         {
-            if (!gamePaused)
+            if (!gameMan.gamePaused)
             {
                 OnClickPause();
             }
@@ -155,7 +157,7 @@ public class UIManager : MonoBehaviour {
         }
         else
         {
-            if (!gamePaused)
+            if (!gameMan.gamePaused)
             {
                 OnClickPause();
             }

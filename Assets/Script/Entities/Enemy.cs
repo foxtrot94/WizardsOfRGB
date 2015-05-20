@@ -31,10 +31,6 @@ public class Enemy : Entity {
         x -= speed * Time.deltaTime;
         transform.position = Tools.GameToWorldPosition(row, x);
 
-        // Set the correct color
-        //SpriteRenderer spriteRender = this.GetComponent<SpriteRenderer>();
-        //spriteRender.color = GameColor.GetDisplayColor(color);
-
         if (x < 0f && old_x > 0f)
         {
             // Collision check when passing the origin

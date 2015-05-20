@@ -5,7 +5,7 @@ using System;
 
 public class Generator : MonoBehaviour {
     private float nextSpawn;
-    public float elapsed;
+    public float elapsed; //TODO: Consider moving this to GameManager
     public float spawnX = 20;
     public float speed = 0;
     public int lanes = 5;
@@ -75,6 +75,7 @@ public class Generator : MonoBehaviour {
 
     public void Update()
     {
+        //TODO: Move this to Game Manager
         elapsed += Time.deltaTime;
 
         if (elapsed > nextSpawn)

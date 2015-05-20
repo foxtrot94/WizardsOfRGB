@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 public class MenuController : MonoBehaviour {
+
     public static int Difficulty = 0;
 
     public void OnEnable()
     {
-
+        
     }
 
     public void Update()
@@ -32,6 +34,11 @@ public class MenuController : MonoBehaviour {
     {
         Difficulty = 2;
         Application.LoadLevel("GameScene");
+    }
+
+    public void OnClickScore()
+    {
+        //TODO: Implement Scoreboard technology.
     }
 
     public void Quit()
