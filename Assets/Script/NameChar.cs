@@ -21,7 +21,6 @@ public class NameChar : MonoBehaviour {
     void OnEnable()
     {
         timer = waitTime;
-        Button testy = GetComponentInChildren<Button>();
     }
 
     void Update()

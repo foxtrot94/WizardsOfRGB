@@ -80,6 +80,7 @@ public class GameManager : MonoBehaviour
             }
         }
         //TODO: If gameOver, count the time since the level was loaded!
+        
     }
 
     public bool CheckHit(Enemy enemy)

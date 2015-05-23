@@ -67,10 +67,12 @@
     <Compile Include="Assets\Script\Managers\GameManager.cs" />
     <Compile Include="Assets\Script\Managers\MenuController.cs" />
     <Compile Include="Assets\Script\Managers\MusicManager.cs" />
+    <Compile Include="Assets\Script\Managers\Score\HighScore.cs" />
+    <Compile Include="Assets\Script\Managers\Score\ScoreManager.cs" />
+    <Compile Include="Assets\Script\Managers\Score\Scoreboard.cs" />
     <Compile Include="Assets\Script\Managers\UIManager.cs" />
     <Compile Include="Assets\Script\Moon.cs" />
     <Compile Include="Assets\Script\NameChar.cs" />
-    <Compile Include="Assets\Script\Scoreboard.cs" />
     <Compile Include="Assets\Script\Tools.cs" />
   </ItemGroup>
   <ItemGroup>
