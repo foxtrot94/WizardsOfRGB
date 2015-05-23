@@ -54,59 +54,62 @@ public class Wizard : Entity
 
 	void Update ()
 	{
-        if (respawn > 0f)
+        if (gameMan!=null)
         {
-            respawn -= Time.deltaTime;
-
-            if (respawn <= 0)
+            if (respawn > 0f)
             {
-                life = 3;
-                wizardHealthBar.Heal();
-                if (respawnSound.Count > 0)
-                {
-                    source.PlayOneShot(respawnSound[UnityEngine.Random.Range(0, respawnSound.Count)]);
-                }
-            }
-        }
+                respawn -= Time.deltaTime;
 
-        if (life > 0)
-        {
-            GetComponent<Renderer>().enabled = invulnerability % 0.1f < 0.05f;
-            invulnerability = Mathf.Max(0f, invulnerability - Time.deltaTime);
-
-            //Read Controls if game is not paused.
-            if (!gameMan.gamePaused)
-            {
-                if (Input.GetButtonDown(upButton) && switchTimer == 0)
+                if (respawn <= 0)
                 {
-                    this.Move(-1);
-                }
-                else if (Input.GetButtonDown(downButton) && switchTimer == 0)
-                {
-                    this.Move(1);
+                    life = 3;
+                    wizardHealthBar.Heal();
+                    if (respawnSound.Count > 0)
+                    {
+                        source.PlayOneShot(respawnSound[UnityEngine.Random.Range(0, respawnSound.Count)]);
+                    }
                 }
             }
 
-            if (switchTimer > 0)
+            if (life > 0)
             {
-                switchTimer -= Time.deltaTime;
-                if (switchTimer < 0) switchTimer = 0;
+                GetComponent<Renderer>().enabled = invulnerability % 0.1f < 0.05f;
+                invulnerability = Mathf.Max(0f, invulnerability - Time.deltaTime);
 
-                // Real wizard position is changed halfway in the animation
-                row = switchTimer < switchTimerMax / 2 ? targetRow : sourceRow;
+                //Read Controls if game is not paused.
+                if (!gameMan.gamePaused)
+                {
+                    if (Input.GetButtonDown(upButton) && switchTimer == 0)
+                    {
+                        this.Move(-1);
+                    }
+                    else if (Input.GetButtonDown(downButton) && switchTimer == 0)
+                    {
+                        this.Move(1);
+                    }
+                }
 
-                // Transition
-                transform.position = Tools.GameToWorldPosition(sourceRow, targetRow, (switchTimerMax - switchTimer) / switchTimerMax);
+                if (switchTimer > 0)
+                {
+                    switchTimer -= Time.deltaTime;
+                    if (switchTimer < 0) switchTimer = 0;
+
+                    // Real wizard position is changed halfway in the animation
+                    row = switchTimer < switchTimerMax / 2 ? targetRow : sourceRow;
+
+                    // Transition
+                    transform.position = Tools.GameToWorldPosition(sourceRow, targetRow, (switchTimerMax - switchTimer) / switchTimerMax);
+                }
+                else
+                {
+                    // Set the correct in game position
+                    transform.position = Tools.GameToWorldPosition(row, offsetX);
+                }
             }
             else
             {
-                // Set the correct in game position
-                transform.position = Tools.GameToWorldPosition(row, offsetX);
-            }
-        }
-        else
-        {
-            GetComponent<Renderer>().enabled = false;
+                GetComponent<Renderer>().enabled = false;
+            } 
         }
 	}
 
