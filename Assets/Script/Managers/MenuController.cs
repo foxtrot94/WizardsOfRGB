@@ -6,39 +6,36 @@ public class MenuController : MonoBehaviour {
 
     public static int Difficulty = 0;
     
-    public RawImage fader;
     public GameObject fadingTex;
     public float fadeSpeed;
-    //private Color initialColor;
+
+    public GameObject menuMusicItem;
+    
     private SpriteRenderer fadeRender;
     private Rect screenOverlay;
 
-    private Wizard[] testy;
+    private GameObject localMusicMan;
 
     public void OnEnable()
     {
         //Do not allow the device to sleep. Ever
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
-        //fader.gameObject.SetActive(true);
 
-        //Experimental: Screen Fading and Anim
         if (Time.timeScale > 0)
         {
             fadingTex.SetActive(true);
-        }
-        
+        }        
         fadeRender = fadingTex.GetComponent<SpriteRenderer>();
-        
-        testy = FindObjectsOfType<Wizard>();
-        foreach (Wizard w in testy)
+
+        MusicManager existingManager = GameObject.FindObjectOfType<MusicManager>();
+        if (existingManager == null)
         {
-            Animator anim = w.GetComponent<Animator>();
-            anim.speed = 0.1f;
+            localMusicMan = (GameObject) GameObject.Instantiate(menuMusicItem);          
+            DontDestroyOnLoad(localMusicMan);
         }
 
         //Reset the time scale always.
         Time.timeScale = 1;
-
     }
 
     public void Update()
@@ -50,7 +47,7 @@ public class MenuController : MonoBehaviour {
         }
 
         //Fade in slowly.
-        if (fader != null)
+        if (fadingTex != null)
         {
             if (fadeRender.color.a > 0)
             {
@@ -64,10 +61,6 @@ public class MenuController : MonoBehaviour {
                 fadeRender.gameObject.SetActive(false);
             }
         }
-    }
-
-    void OnGUI()
-    {
     }
 
     public void OnClickDifficultyEasy()
@@ -90,15 +83,18 @@ public class MenuController : MonoBehaviour {
 
     public void OnClickScore()
     {
-        //TODO: Implement Scoreboard
+        Application.LoadLevel("ScoreboardScene");
+    }
+
+    public void OnClickMainMenu()
+    {
+        Application.LoadLevel("MenuScene");
     }
 
     private void LoadGame()
     {
-        foreach (Wizard w in testy)
-        {
-            w.Spell();
-        }
+        //TODO: Fade out maybe?
+        Destroy(localMusicMan);
         Application.LoadLevel("GameScene");
     }
 
