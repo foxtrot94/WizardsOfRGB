@@ -27,8 +27,9 @@ public class MenuController : MonoBehaviour {
         }        
         fadeRender = fadingTex.GetComponent<SpriteRenderer>();
 
-        MusicManager existingManager = GameObject.FindObjectOfType<MusicManager>();
-        if (existingManager == null)
+        //We need to find any existing MusicManagers and stop them! (or make them if they're not there)
+        localMusicMan = GameObject.Find(menuMusicItem.name+"(Clone)"); 
+        if (localMusicMan == null)
         {
             localMusicMan = (GameObject) GameObject.Instantiate(menuMusicItem);          
             DontDestroyOnLoad(localMusicMan);
