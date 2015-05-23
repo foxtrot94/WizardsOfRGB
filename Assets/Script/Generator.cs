@@ -4,14 +4,15 @@ using System.Linq;
 using System;
 
 public class Generator : MonoBehaviour {
-    private float nextSpawn;
+    public float nextSpawn;
     public float elapsed;
+    public float maxSpeed = 480;
     public float spawnX = 20;
     public float speed = 0;
     public int lanes = 5;
     public GameObject blockPrefab;
 
-    private int[] difficultyTimeOffset = { 0, 120, 240 };
+    private readonly int[] difficultyTimeOffset = { 0, 120, 240 };
 
     private static readonly int[] spawnProbability = new int[] {
             // 1 block spawn
@@ -30,8 +31,9 @@ public class Generator : MonoBehaviour {
 
     private int PickProbability(int[] table)
     {
+        //NOTE: We're clamping the Bias to ensure a diversity of enemies are generated over time
         int random = UnityEngine.Random.Range(0, table.Sum());
-        int bias = (int)(elapsed * 0.3f - 30);
+        int bias = (int)(Mathf.Clamp(elapsed,0,240) * 0.3f - 30);
         return random + bias;
     }
 
@@ -116,6 +118,6 @@ public class Generator : MonoBehaviour {
             //print(output);
         }
 
-        speed = 3f + elapsed / 60f;
+        speed = Mathf.Clamp(3f + elapsed / 60f,3f,maxSpeed);
     }
 }

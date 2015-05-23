@@ -1,14 +1,20 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using System.Collections;
+using System.Collections.Generic;
 
 public class UIManager : MonoBehaviour {
 
     public Text scoreVal;
     public Canvas gameUI;
-    public GameObject pauseScreen;
+    public GameObject blockScreen;
+    public GameObject pauseButton;
+    public GameObject pausePanel;
+    public GameObject highScorePanel;
 
-    private bool gamePaused = false;
+    private NameChar[] charInput;
+
     private bool wantsToGoBack = false;
     private bool wantsToQuit = false;
     
@@ -42,9 +48,10 @@ public class UIManager : MonoBehaviour {
         //Find all the managers
         gameMan = FindObjectOfType<GameManager>();
         musicMan = FindObjectOfType<MusicManager>();
+        charInput = FindObjectsOfType<NameChar>();
         
         //Retrieve and set all components
-        Text[] items = pauseScreen.GetComponentsInChildren<Text>();
+        Text[] items = blockScreen.GetComponentsInChildren<Text>();
         for (int i = 0; i < items.Length; ++i)
         {
             //Note: No way around the nasty switch statement.
@@ -66,7 +73,9 @@ public class UIManager : MonoBehaviour {
             }
         }
 
-        pauseScreen.SetActive(false);
+        blockScreen.SetActive(false);
+        highScorePanel.SetActive(false);
+        pauseButton.SetActive(true);
         Time.timeScale = 1;
 
     }
@@ -76,51 +85,73 @@ public class UIManager : MonoBehaviour {
 	}
 	
 	void Update () {
-	    //Update Score
-        scoreVal.text = gameMan.score.ToString();
 
-        if (gameMan.gameOver)
+        if (gameMan.gamePaused)
         {
-            //Stop the game and tell the player
-            Time.timeScale = 0;
-            pauseScreenBanner.text = gameOverBanner;
-            pauseScreenText.text = "You had a nice run!";
-            pauseScreen.SetActive(true);
+
         }
         else
         {
-            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Menu))
+            if (gameMan.gameOver)
             {
-                OnClickPause();
-            }
+                //Stop the game and tell the player
+                Time.timeScale = 0;
 
-            else if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Home) || Input.GetKeyDown(KeyCode.O))
+                pauseButton.SetActive(false);
+                blockScreen.SetActive(true);
+                //Check if he has a high score
+                if (ScoreManager.IsNewHighScore((int)gameMan.score))
+                {
+                    highScorePanel.SetActive(true);
+                }
+                else
+                {
+                    pauseScreenBanner.text = gameOverBanner;
+                    pauseScreenText.text = "You had a nice run!";
+                    pausePanel.SetActive(true);
+                }
+                //ReadNameInput();
+            }
+            else
             {
-                OnClickQuit();
+                //Update Score
+                scoreVal.text = gameMan.score.ToString();
+
+                //Listen to button input
+                if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Menu))
+                {
+                    OnClickPause();
+                }
+
+                else if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Home) || Input.GetKeyDown(KeyCode.O))
+                {
+                    OnClickQuit();
+                }
             }
         }
 	}
 
     public void OnClickPause()
     {
-        if (gamePaused)
+        if (gameMan.gamePaused)
         {
             Time.timeScale = 1;
-            gamePaused = false;
+            gameMan.gamePaused = false;
             wantsToGoBack = false;
             wantsToQuit = false;
         }
         else
         {
             Time.timeScale = 0;
-            gamePaused = true;
+            gameMan.gamePaused = true;
             badText.text = badTextString;
             goodText.text = goodTextString;
             pauseScreenBanner.text = pauseBanner;
             pauseScreenText.text = pauseText;
         }
 
-        pauseScreen.SetActive(gamePaused);
+        blockScreen.SetActive(gameMan.gamePaused);
+        //highScorePanel.SetActive(false);
 
         //Call to toggle game music.
         musicMan.pauseOrResumeMusic();
@@ -134,7 +165,7 @@ public class UIManager : MonoBehaviour {
         }
         else
         {
-            if (!gamePaused)
+            if (!gameMan.gamePaused)
             {
                 OnClickPause();
             }
@@ -155,7 +186,7 @@ public class UIManager : MonoBehaviour {
         }
         else
         {
-            if (!gamePaused)
+            if (!gameMan.gamePaused)
             {
                 OnClickPause();
             }
@@ -168,6 +199,19 @@ public class UIManager : MonoBehaviour {
 
             wantsToQuit = true;
         }
+    }
+
+    public void OnClickSubmitHighScore()
+    {
+        char[] givenInput = new char[] { 'A','A','A' };
+        for (int i = 0; i < charInput.Length; ++i)
+        {
+            givenInput[charInput[i].position] = charInput[i].currentChar;
+        }
+
+        gameMan.UpdatePlayerName(new string(givenInput));
+        gameMan.UpdateScoreManager();
+        Application.LoadLevel("ScoreboardScene");
     }
 
     public void OnClickMainMenu()
@@ -203,6 +247,30 @@ public class UIManager : MonoBehaviour {
     public void BlueWizardDown()
     {
         gameMan.blueWizard.Move(1);
+    }
+
+    private void ReadNameInput()
+    {
+        //if (Input.inputString.Length > 0)
+        //{
+        //    char keyIn = char.ToUpperInvariant(Input.inputString[0]); //Take only the first letter
+
+        //    if (char.IsLetterOrDigit(keyIn))
+        //    {
+        //        input.Add(keyIn);
+                
+        //        if (input.Count > 3)
+        //        {
+        //            input.RemoveAt(0);
+        //        }
+        //        Debug.Log("input: " + new string(input.ToArray()));
+        //    }
+        //    if (input.Count < 3)
+        //    {
+        //        playerInputField.GetComponentInChildren<Text>().color = Color.black;
+        //    }
+        //    playerInputField.GetComponentInChildren<Text>().text = new string(input.ToArray());
+        //}
     }
 
 }

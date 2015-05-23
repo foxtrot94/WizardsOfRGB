@@ -1,18 +1,19 @@
 ﻿using System;
-using System.Linq;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Halo : MonoBehaviour
 {
     public int row;
-    public int wizardsInRow;
+    public int wizardsInRowCount;
+    public int combinedColorIndex;
     public Color haloColor;
 
-    private Wizard[] wizards;
+    private Wizard[] allWizards;
 
     void OnEnable()
     {
-        wizards = FindObjectsOfType<Wizard>();
+        allWizards = FindObjectsOfType<Wizard>();
     }
 
     void Update()
@@ -21,21 +22,34 @@ public class Halo : MonoBehaviour
         transform.position = Tools.GameToWorldPosition(row, 0);
 
         // Get colors of the sprite based on other wizards in the same lane
-        int color = 0;
-        wizardsInRow = 0;
+        
+        wizardsInRowCount = 0;
+        combinedColorIndex = 0;
 
-        for (int i = 0; i < wizards.Length; ++i)
+        for (int i = 0; i < allWizards.Length; ++i)
         {
-            if (wizards[i].row == this.row && wizards[i].life > 0)
+            if (allWizards[i].row == this.row && allWizards[i].life > 0)
             {
-                color = GameColor.Combine(color, wizards[i].color);
-                ++wizardsInRow;
+                combinedColorIndex = GameColor.Combine(combinedColorIndex, allWizards[i].color);
+                ++wizardsInRowCount;
             }
         }
 
-        GetComponent<Renderer>().enabled = color > 0;
-        haloColor = GameColor.GetDisplayColor(color);
-        haloColor.a =(float) (0.5f * wizardsInRow);
+        GetComponent<Renderer>().enabled = combinedColorIndex > 0;
+        haloColor = GameColor.GetDisplayColor(combinedColorIndex);
+        haloColor.a =(float) (0.5f * wizardsInRowCount);
         GetComponent<SpriteRenderer>().color = haloColor;
+    }
+
+    public Wizard[] GetWizardsInLane()
+    {
+        List<Wizard> returnArray = new List<Wizard>();
+        for(int i = 0; i< allWizards.Length ; ++i){
+            if (allWizards[i].row == this.row)
+            {
+                returnArray.Add(allWizards[i]);
+            }
+        }
+        return returnArray.ToArray();
     }
 }
