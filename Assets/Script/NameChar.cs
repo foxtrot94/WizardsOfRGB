@@ -2,13 +2,15 @@
 using UnityEngine.UI;
 using System.Collections;
 
+
 public class NameChar : MonoBehaviour {
 
+    public int position;
     public Text charDisplay;
+    public char currentChar = 'A';
     public float scrollSpeed=2;
     public float waitTime=0.75f;
 
-    private char currentChar = 'A';
     private const char baseChar = '0';
     private const int  baseValue = 48; //'0'
     private const char maxChar = 'Z';
@@ -20,6 +22,16 @@ public class NameChar : MonoBehaviour {
 
     void OnEnable()
     {
+        //Find out what's our position
+        for (int i = 0; i < this.gameObject.name.Length; ++i)
+        {
+            if(char.IsDigit(this.gameObject.name[i]))
+            {
+                position = int.Parse(this.gameObject.name[i].ToString());
+                break;
+            }
+        }
+
         timer = waitTime;
     }
 

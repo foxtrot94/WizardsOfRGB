@@ -6,9 +6,12 @@ using System.Collections.Generic;
 public class GameManager : MonoBehaviour
 {
     public float score = 0;
-    public float timeInGame = 0f; // TODO: Read this from generator? or maintain it here?
+    public float timeInGame = 0f;
+    public string playerName = "WIZ";
+    public int enemiesDealt = 0;
     public bool gamePaused = false;
     public bool gameOver = false;
+
     public GameObject haloPrefab;
     public GameObject wizardPrefab;
     public GameObject healthBarPrefab;
@@ -68,6 +71,7 @@ public class GameManager : MonoBehaviour
     {
         if (!gameOver)
         {
+            timeInGame += Time.deltaTime;
             //If our 3 wizards have no life left
             if (redWizard.life == 0 && greenWizard.life == 0 && blueWizard.life == 0)
             {
@@ -96,7 +100,7 @@ public class GameManager : MonoBehaviour
             if (color == enemy.color) //Right Color Combo
             {
                 score += 100 * Mathf.Pow(4, GameColor.GetNumComponents(color) - 1);
-
+                enemiesDealt++;
                 for (int i = 0; i < wizardsInLane.Length; ++i)
                 {
                     wizardsInLane[i].Spell();
@@ -114,5 +118,15 @@ public class GameManager : MonoBehaviour
         }
         //Enemy did not hit wizard
         return false;
+    }
+
+    public void UpdateScoreManager()
+    {
+        ScoreManager.Update(new HighScore(playerName, (int)score, timeInGame, enemiesDealt));
+    }
+
+    public void UpdatePlayerName(string newName)
+    {
+        playerName = newName;
     }
 }

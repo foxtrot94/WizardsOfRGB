@@ -27,7 +27,7 @@ public static class ScoreManager {
 
             if (highScores == null)
             {
-                ReadFromStorage();
+                Read();
             }
 
             if (validOperation)
@@ -36,6 +36,13 @@ public static class ScoreManager {
                 highScores.Add(newEntry);
                 System.Comparison<HighScore> comparison = new System.Comparison<HighScore>(HighScore.CompareHighScores);
                 highScores.Sort(comparison);
+
+                //If we have larger than capacity, delete the last entry
+                if (highScores.Count > maxListSize)
+                {
+                    highScores.RemoveAt(maxListSize-1);
+                }
+
                 //Save the file
                 BinaryFormatter serializer = new BinaryFormatter();
                 FileStream scoreFile = File.Create(Application.persistentDataPath + "/" + fileName);
@@ -55,27 +62,31 @@ public static class ScoreManager {
     /// Guaranteed to never return null if exception free.
     /// </summary>
     /// <returns>The List of all High Scores</returns>
-    public static List<HighScore> ReadFromStorage()
+    public static List<HighScore> Read()
     {
-        BinaryFormatter serializer = new BinaryFormatter();
-        FileStream scoreFile;
-        if (File.Exists(Application.persistentDataPath + "/" + fileName))
-        {            
-            scoreFile = File.Open(Application.persistentDataPath + "/" + fileName, FileMode.Open);
-            highScores = (List<HighScore>)serializer.Deserialize(scoreFile);
-        }
-        else
+        if (highScores==null)
         {
-            highScores = new List<HighScore>();
+            BinaryFormatter serializer = new BinaryFormatter();
+            FileStream scoreFile;
+            if (File.Exists(Application.persistentDataPath + "/" + fileName))
+            {
+                scoreFile = File.Open(Application.persistentDataPath + "/" + fileName, FileMode.Open);
+                highScores = (List<HighScore>)serializer.Deserialize(scoreFile);
+            }
+            else
+            {
+                highScores = new List<HighScore>();
 
-            highScores.Add(new HighScore("DEV", 30000, 240, 20));
-            highScores.Add(new HighScore("WIZ",1000,240,10));
+                highScores.Add(new HighScore("DEV", 30000, 240, 20));
+                highScores.Add(new HighScore("WIZ", 1000, 240, 10));
 
-            scoreFile = File.Create(Application.persistentDataPath + "/" + fileName);
-            serializer.Serialize(scoreFile, highScores);
+                scoreFile = File.Create(Application.persistentDataPath + "/" + fileName);
+                serializer.Serialize(scoreFile, highScores);
+            }
+            scoreFile.Close(); 
         }
 
-        scoreFile.Close();
+
         return highScores;
     }
 
@@ -86,13 +97,27 @@ public static class ScoreManager {
     /// <returns>True if the value belongs in the High Score list. False otehrwise</returns>
     public static bool IsNewHighScore(int score)
     {
-        return false;
-    }
+        if (highScores == null)
+        {
+            Read();
+        }
 
-    private static int ListIndexPosition(int scoreValue)
-    {
-        return 0;
+        if (highScores.Count < maxListSize)
+        {
+            return true;
+        }
+        else
+        {
+            for (int i = 0; i < highScores.Count; ++i)
+            {
+                if (highScores[i].score < score)
+                {
+                    //If a high score was found that is less than the given parameter, it should be safe to add
+                    return true;
+                }
+            }
+            return false;
+        }
     }
-
 
 }

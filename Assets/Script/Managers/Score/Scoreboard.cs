@@ -13,7 +13,7 @@ public class Scoreboard : MonoBehaviour {
     public void OnEnable()
     {
         //Ask the ScoreManager to get the table of entries
-        ScoreBoard = ScoreManager.ReadFromStorage().ToArray();
+        ScoreBoard = ScoreManager.Read().ToArray();
 
         //Populate the entries in the UI
         scoreDisplayArea = GetComponent<VerticalLayoutGroup>();
@@ -28,6 +28,8 @@ public class Scoreboard : MonoBehaviour {
             GameObject scoreEntry = (GameObject)GameObject.Instantiate(entryPrefab);
             if (i < ScoreBoard.Length)
             {
+                //NOTE: We're making the HORRIBLE assumption here that Unity will be nice and give us the child components in order
+                //      Therefore, this may break depending on platforms and Unity versions
                 Text[] fields = scoreEntry.GetComponentsInChildren<Text>();
                 FillEntryFields(fields, ScoreBoard[i]);
             }
