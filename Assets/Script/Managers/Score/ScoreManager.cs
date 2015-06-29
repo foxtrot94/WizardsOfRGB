@@ -40,7 +40,7 @@ public static class ScoreManager {
                 //If we have larger than capacity, delete the last entry
                 if (highScores.Count > maxListSize)
                 {
-                    highScores.RemoveAt(maxListSize-1);
+                    highScores.RemoveAt(maxListSize);
                 }
 
                 //Save the file
