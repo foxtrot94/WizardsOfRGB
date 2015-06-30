@@ -90,7 +90,7 @@ public class UIManager : MonoBehaviour {
         {
                 if (Input.GetKeyDown(KeyCode.Escape)) //Required by Android Standards
                 {
-                    OnClickQuit();
+                    OnClickBack();
                 }
         }
         else
