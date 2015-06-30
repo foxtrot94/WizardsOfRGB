@@ -88,7 +88,10 @@ public class UIManager : MonoBehaviour {
 
         if (gameMan.gamePaused)
         {
-
+                if (Input.GetKeyDown(KeyCode.Escape)) //Required by Android Standards
+                {
+                    OnClickBack();
+                }
         }
         else
         {
