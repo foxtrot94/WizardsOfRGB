@@ -114,8 +114,8 @@ PlayerSettings:
   iOSLaunchScreenCustomXibPath: 
   AndroidTargetDevice: 0
   AndroidSplashScreenScale: 0
-  AndroidKeystoreName: 
-  AndroidKeyaliasName: 
+  AndroidKeystoreName: D:/Personal/system/objects/keychain/android/foxtrotzulu94-android.keystore
+  AndroidKeyaliasName: foxtrotzulu94
   resolutionDialogBanner: {fileID: 2800000, guid: ece7557ddc459014e8780e1b12652e6c,
     type: 3}
   m_BuildTargetIcons:
